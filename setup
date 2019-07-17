@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+#Install Homebrew, if not already installed
+
+if [ ! $(which brew) ]; then
+  echo "Installing Homebrew…"
+  ruby -e "$(curl -fsSl https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  brew update
+else
+  echo "Updating and cleaning Homebrew…"
+  brew upgrade
+fi
+
+#Install apps to /Applications
+#Each has its own command to prevent errors in remaining installed if a piece of software is already installed (a cask design decision).
+brew tap caskroom/versions
+echo "Installing apps to /Applications…"
+brew cask install --appdir="/Applications" virtualbox
+brew cask install --appdir="/Applications" vagrant
+brew cask install --appdir="/Applications" gns3
+
+#Clean up after Homebrew
+echo "Cleaning up…"
+brew cleanup
+rm -f -r /Library/Caches/Homebrew/*
+
