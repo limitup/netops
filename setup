@@ -24,3 +24,27 @@ echo "Cleaning up…"
 brew cleanup
 rm -f -r /Library/Caches/Homebrew/*
 
+FILE=~/.config/GNS3/gns3_gui.conf
+if [ -f "$FILE"  ]; then
+	echo "$FILE exists"
+	echo "overwriting $FILE"
+	echo
+	cp -f ./config/gns3_gui.conf ~/.config/GNS3/gns3_gui.conf
+else
+    echo "$FILE does not exist"
+	echo
+	cp -f ~/.config/GNS3/gns3_gui.conf gns3_gui.conf
+fi
+
+FILE=~/.config/GNS3/gns3_server.conf
+if [ -f "$FILE"  ]; then
+	echo "$FILE exists"
+	echo "overwriting $FILE"
+	echo
+	cp -f ./config/gns3_server.conf ~/.config/GNS3/gns3_server.conf
+else
+    echo "$FILE does not exist"
+	echo
+	cp -f ~/.config/GNS3/gns3_server.conf gns3_server.conf
+fi
+
